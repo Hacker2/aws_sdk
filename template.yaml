@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: HelloWorldLambdaJava
+
+Globals:
+  Function:
+    Runtime: java8
+    MemorySize: 512
+    CodeUri: .
+
+Resources:
+  HelloWorldLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: book.HelloWorld::handlerResponse
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: any
+  HelloWorldLambdaMap:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: book.HelloWorld::handlerMap
+      Events:
+        ApiEvents:
+          Type: Api
+          Properties:
+            Path: /hello2
+            Method: any
